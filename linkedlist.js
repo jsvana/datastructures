@@ -39,6 +39,7 @@ var LinkedList = function() {
 
   var _head = new Node(null);
   var _tail = new Node(null);
+  var _length = 0;
 
   _head.setNext(_tail);
   _tail.setPrev(_head);
@@ -51,6 +52,8 @@ var LinkedList = function() {
     newNode.setPrev(node);
     newNode.setNext(next);
     next.setPrev(newNode);
+
+    ++_length;
 
     return newNode;
   };
@@ -71,6 +74,10 @@ var LinkedList = function() {
     return _head.getNext();
   };
 
+  this.getLast = function() {
+    return _tail.getPrev();
+  };
+
   this.remove = function(node) {
     var prev = node.getPrev();
     var next = node.getNext();
@@ -79,7 +86,51 @@ var LinkedList = function() {
     node.setPrev(null);
     node.setNext(null);
 
-    return node;
+    --_length;
+
+    return node.getData();
+  };
+
+  this.pushFirst = function(item) {
+    return this.addFirst(item);
+  };
+
+  this.pushLast = function(item) {
+    return this.addLast(item);
+  };
+
+  this.popFirst = function() {
+    return this.remove(this.getFirst());
+  };
+
+  this.popLast = function() {
+    return this.remove(this.getLast());
+  };
+
+  this.getLength = function() {
+    return _length;
+  };
+
+  this.get = function(index) {
+    if(index < 0 || index > this.getLength() - 1) {
+      return null;
+    }
+
+    var node = this.getFirst();
+
+    for(var i = 0; node.hasNext(); i++) {
+      if(i == index) {
+        return node;
+      }
+
+      node = node.getNext();
+    }
+
+    return null;
+  }
+
+  this.empty = function() {
+    return _length == 0;
   };
 };
 
@@ -88,6 +139,8 @@ var list = new LinkedList();
 var node = list.addFirst("one");
 var two = list.addAfter(node, "two");
 list.addLast("three");
+
+console.log('[Node[1]] ' + list.get(1).getData());
 
 console.log('[List Contents]');
 
@@ -108,3 +161,9 @@ while(node.hasNext()) {
 
   node = node.getNext();
 }
+
+console.log('[After Pop]');
+
+console.log(list.popLast());
+
+console.log(list.getLength());
