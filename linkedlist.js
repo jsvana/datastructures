@@ -55,15 +55,53 @@ var LinkedList = function() {
     return newNode;
   };
 
+  this.addBefore = function(node, item) {
+    return this.addAfter(node.getPrev(), item);
+  };
+
   this.addFirst = function(item) {
     return this.addAfter(_head, item);
+  };
+
+  this.addLast = function(item) {
+    return this.addBefore(_tail, item);
+  };
+
+  this.getFirst = function() {
+    return _head.getNext();
+  };
+
+  this.remove = function(node) {
+    var prev = node.getPrev();
+    var next = node.getNext();
+    prev.setNext(next);
+    next.setPrev(prev);
+    node.setPrev(null);
+    node.setNext(null);
+
+    return node;
   };
 };
 
 var list = new LinkedList();
 
 var node = list.addFirst("one");
-list.addAfter(node, "two");
+var two = list.addAfter(node, "two");
+list.addLast("three");
+
+console.log('[List Contents]');
+
+while(node.hasNext()) {
+  console.log(node.getData());
+
+  node = node.getNext();
+}
+
+list.remove(two);
+
+node = list.getFirst();
+
+console.log('[List Contents]');
 
 while(node.hasNext()) {
   console.log(node.getData());
