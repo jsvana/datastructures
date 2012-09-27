@@ -1,6 +1,6 @@
 var LinkedList = require('./linkedlist');
 
-var PriorityQueue = function() {
+var OrderedPriorityQueue = function() {
   var _data = new LinkedList();
 
   this.push = function(item, priority) {
@@ -23,6 +23,50 @@ var PriorityQueue = function() {
     return _data.popFirst();
   };
 
+  this.remove = function(node) {
+    return _data.remove(node);
+  };
+
+  this.length = function() {
+    return _data.length();
+  };
+
+  this.empty = function() {
+    return _data.empty();
+  };
+};
+
+var UnorderedPriorityQueue = function() {
+  var _data = new LinkedList();
+
+  this.push = function(item, priority) {
+    _data.addLast({ item: item, priority: priority });
+  };
+
+  this.pop = function() {
+    var node = _data.getFirst();
+    var min = node;
+    node = node.getNext();
+
+    while(node.hasNext()) {
+      var data = node.getData();
+
+      if(data.priority < min.getData().priority) {
+        min = node;
+      }
+
+      node = node.getNext();
+    }
+
+    _data.remove(min);
+
+    return min.getData();
+  };
+
+  this.remove = function(node) {
+    return _data.remove(node);
+  };
+
   this.length = function() {
     return _data.length();
   };
@@ -33,7 +77,29 @@ var PriorityQueue = function() {
 };
 
 var test = function() {
-  var queue = new PriorityQueue();
+  console.log('[Ordered]');
+
+  var queue = new OrderedPriorityQueue();
+
+  var items = [
+    { item: 'asdf', priority: 4 },
+    { item: 'qwerty', priority: 2 },
+    { item: 'foo', priority: 7 },
+    { item: 'bar', priority: 1 }
+  ];
+
+  for(var i = 0; i < items.length; i++) {
+    queue.push(items[i].item, items[i].priority);
+  }
+
+  while(!queue.empty()) {
+    var data = queue.pop();
+    console.log('item: ' + data.item + ', priority: ' + data.priority);
+  }
+
+  console.log('[Unordered]');
+
+  var queue = new UnorderedPriorityQueue();
 
   var items = [
     { item: 'asdf', priority: 4 },
