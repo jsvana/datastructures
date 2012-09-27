@@ -92,36 +92,40 @@ var ArraySequence = function(size) {
   };
 };
 
-var data = new ArraySequence();
+var test = function() {
+  var data = new ArraySequence();
 
-data.pushFirst('one');
-data.pushFirst('two');
-data.pushFirst('three');
-data.pushFirst('four');
-data.pushFirst('five');
-data.pushLast('zero');
+  data.pushFirst('one');
+  data.pushFirst('two');
+  data.pushFirst('three');
+  data.pushFirst('four');
+  data.pushFirst('five');
+  data.pushLast('zero');
 
-console.log('[Display]');
+  console.log('[Display]');
 
-for(var i = 0; i < data.length(); i++) {
-  console.log(data.get(i));
-}
+  for(var i = 0; i < data.length(); i++) {
+    console.log(data.get(i));
+  }
 
-data.remove(2);
+  data.remove(2);
 
-console.log('[Display]');
+  console.log('[Display]');
 
-for(var i = 0; i < data.length(); i++) {
-  console.log(data.get(i));
-}
+  for(var i = 0; i < data.length(); i++) {
+    console.log(data.get(i));
+  }
 
-console.log('[popLast] ' + data.popLast());
-console.log('[length] ' + data.length());
-console.log('[popFirst] ' + data.popFirst());
-console.log('[length] ' + data.length());
+  console.log('[popLast] ' + data.popLast());
+  console.log('[length] ' + data.length());
+  console.log('[popFirst] ' + data.popFirst());
+  console.log('[length] ' + data.length());
 
-console.log('[Display]');
+  console.log('[Display]');
 
-for(var i = 0; i < data.length(); i++) {
-  console.log(data.get(i));
-}
+  for(var i = 0; i < data.length(); i++) {
+    console.log(data.get(i));
+  }
+};
+
+module.exports = ArraySequence;

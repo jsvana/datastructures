@@ -107,12 +107,12 @@ var LinkedList = function() {
     return this.remove(this.getLast());
   };
 
-  this.getLength = function() {
+  this.length = function() {
     return _length;
   };
 
   this.get = function(index) {
-    if(index < 0 || index > this.getLength() - 1) {
+    if(index < 0 || index > this.length() - 1) {
       return null;
     }
 
@@ -134,36 +134,40 @@ var LinkedList = function() {
   };
 };
 
-var list = new LinkedList();
+var test = function() {
+  var list = new LinkedList();
 
-var node = list.addFirst("one");
-var two = list.addAfter(node, "two");
-list.addLast("three");
+  var node = list.addFirst("one");
+  var two = list.addAfter(node, "two");
+  list.addLast("three");
 
-console.log('[Node[1]] ' + list.get(1).getData());
+  console.log('[Node[1]] ' + list.get(1).getData());
 
-console.log('[List Contents]');
+  console.log('[List Contents]');
 
-while(node.hasNext()) {
-  console.log(node.getData());
+  while(node.hasNext()) {
+    console.log(node.getData());
 
-  node = node.getNext();
-}
+    node = node.getNext();
+  }
 
-list.remove(two);
+  list.remove(two);
 
-node = list.getFirst();
+  node = list.getFirst();
 
-console.log('[List Contents]');
+  console.log('[List Contents]');
 
-while(node.hasNext()) {
-  console.log(node.getData());
+  while(node.hasNext()) {
+    console.log(node.getData());
 
-  node = node.getNext();
-}
+    node = node.getNext();
+  }
 
-console.log('[After Pop]');
+  console.log('[After Pop]');
 
-console.log(list.popLast());
+  console.log(list.popLast());
 
-console.log(list.getLength());
+  console.log(list.length());
+};
+
+module.exports = LinkedList;
