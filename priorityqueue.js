@@ -118,4 +118,7 @@ var test = function() {
   }
 };
 
-test();
+module.exports = {
+  Ordered: OrderedPriorityQueue,
+  Unordered: UnorderedPriorityQueue
+};
