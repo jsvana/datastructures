@@ -90,4 +90,4 @@ var test = function() {
   console.log(map.contains('foo'));
 };
 
-test();
+module.exports = HashMap;
