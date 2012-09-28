@@ -110,6 +110,4 @@ var test = function() {
   console.log(root.render());
 };
 
-test();
-
 module.exports = BinaryTree;
