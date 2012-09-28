@@ -56,6 +56,16 @@ var ArraySequence = function(size) {
     return _data[index];
   };
 
+  this.set = function(index, value) {
+    if(index < 0 || index > this.length()) {
+      return null;
+    }
+
+    var old = _data[index];
+    _data[index] = value;
+    return old;
+  };
+
   this.remove = function(index) {
     if(index < 0 || index > this.length() - 1) {
       return null;
