@@ -91,6 +91,10 @@ var LinkedList = function() {
     return node.getData();
   };
 
+  this.push = function(item) {
+    return this.pushFirst(item);
+  };
+
   this.pushFirst = function(item) {
     return this.addFirst(item);
   };
@@ -119,7 +123,7 @@ var LinkedList = function() {
     var node = this.getFirst();
 
     for(var i = 0; node.hasNext(); i++) {
-      if(i == index) {
+      if(i === index) {
         return node;
       }
 
@@ -130,7 +134,7 @@ var LinkedList = function() {
   }
 
   this.empty = function() {
-    return _length == 0;
+    return _length === 0;
   };
 };
 

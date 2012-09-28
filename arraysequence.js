@@ -3,7 +3,7 @@ var ArraySequence = function(size) {
   var _length = 0;
   var _size;
 
-  if(size == null) {
+  if(size === null) {
     _data = new Array(4);
     _size = 4;
   } else {
@@ -16,14 +16,14 @@ var ArraySequence = function(size) {
   };
 
   this.empty = function() {
-    return _length == 0;
+    return _length === 0;
   }
 
   this.add = function(index, item) {
     if(_length == _size) {
-      console.log('[Expanding...]');
+      //console.log('[Expanding...]');
       this.expand();
-      console.log('[Expanded] New size: ' + _size);
+      //console.log('[Expanded] New size: ' + _size);
     }
 
     for(var i = this.length(); i >= index; i--) {
@@ -36,12 +36,16 @@ var ArraySequence = function(size) {
     return item;
   };
 
+  this.push = function(item) {
+    return this.pushFirst(item);
+  };
+
   this.pushFirst = function(item) {
-    this.add(0, item);
+    return this.add(0, item);
   };
 
   this.pushLast = function(item) {
-    this.add(this.length(), item);
+    return this.add(this.length(), item);
   };
 
   this.get = function(index) {
