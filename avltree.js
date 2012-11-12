@@ -140,7 +140,7 @@ var AVLTree = function() {
         rightStr = 'null';
       }
 
-      return '( [' + _value + ']{' + this.balanceFactor() + '} ' + leftStr + ' ' + rightStr + ')';
+      return '{"value":' + _value + ',"left":' + leftStr + ',"right":' + rightStr + '}';
     };
   };
 
@@ -346,9 +346,6 @@ var AVLTree = function() {
           node.setHeight(node.getRightHeight() + 1);
         }
       }
-      console.log('rotation');
-    } else {
-      console.log('no rotation');
     }
   };
 
@@ -382,7 +379,7 @@ var AVLTree = function() {
 var test = function() {
   var tree = new AVLTree();
 
-  for (var i = 0; i < 100; i++) {
+  for (var i = 99; i >= 0; i--) {
     tree.insert(i);
   }
 
@@ -390,7 +387,7 @@ var test = function() {
 
   var root = tree.getRoot();
 
-  //console.log(root.render());
+  console.log(root.render());
 };
 
 test();
